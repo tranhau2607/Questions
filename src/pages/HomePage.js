@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import QuestionItem from '../components/QuestionItem';
-import QuestionForm from '../components/QuestionForm';
+import QuestionCard from '../components/QuestionCard';
 
 const HomePage = () => {
   const [questions, setQuestions] = useState([]);
@@ -28,19 +27,16 @@ const HomePage = () => {
   };
 
   return (
-    <div>
+    <div style={{ padding: '20px' }}>
       <h2>Q&A</h2>
-      {role === 'user' && <QuestionForm onSubmit={handleAddQuestion} />}
-      {questions.map(q => (
-        <QuestionItem
-          key={q.id}
-          question={q}
-          onUpdate={handleUpdateQuestion}
-          onDelete={handleDeleteQuestion}
-        />
-      ))}
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+        {questions.map(q => (
+          <QuestionCard key={q.id} question={q} />
+        ))}
+      </div>
     </div>
   );
 };
+
 
 export default HomePage;
