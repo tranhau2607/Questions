@@ -1,0 +1,52 @@
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* margin: 40px 0 40px 0; */
+    padding: 40px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    width: 100%;
+    min-height: 100%;
+    object-fit: none;
+    z-index: -1;
+    background-color: black;
+}
+
+.register-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-button {
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s ease;
+    padding: 6px 12px 6px 12px;
+    border: black 1px solid;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.register-button:hover {
+    background-color: black;
+    color: white;
+}
