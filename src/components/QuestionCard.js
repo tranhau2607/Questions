@@ -7,7 +7,7 @@ const StyledCard = styled(Card)({
   height: '150px',
   margin: '20px',
   perspective: '1000px', // Perspective to give the 3D effect
-  boxShadow: 'none', // Remove any box shadow during the flip
+  boxShadow: 'none', 
   borderRadius: '10px', 
 });
 
@@ -30,9 +30,9 @@ const CardFace = styled(CardContent)({
   justifyContent: 'center',
   backfaceVisibility: 'hidden', // Hide the back face when the front is visible
   backgroundColor: '#f5f5f5',
-  border: '1px solid #ccc', // Optional: Add a border to the face to emphasize the flip
-  borderRadius: '10px', // Remove border radius for a seamless flip
-  boxShadow: 'none', // Remove shadow to avoid edge appearance during flip
+  border: '1px solid #ccc', 
+  borderRadius: '10px', 
+  boxShadow: 'none', 
 });
 
 const CardFront = styled(CardFace)({
