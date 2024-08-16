@@ -27,6 +27,12 @@ function Menu() {
                     <li>
                         <Link to={"/about"} className="menu-item">About</Link>
                     </li>
+                    <li>
+                        <Link to={"/login"} className="menu-item">Login</Link>
+                    </li>
+                    <li>
+                        <Link to={"/register"} className="menu-item">Register</Link>
+                    </li>
                 </div>
                 <div className="menu-icon">
                     <div >
