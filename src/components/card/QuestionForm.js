@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { Modal, Box, TextField, Button } from '@mui/material';
-import { toast } from 'react-toastify';
+import React, { useState } from "react";
+import { Modal, Box, TextField, Button } from "@mui/material";
+import { toast } from "react-toastify";
 
 const QuestionForm = ({ open, handleClose, handleAddQuestion }) => {
-  const [question, setQuestion] = useState('');
+  const [question, setQuestion] = useState("");
 
   const handleSubmit = () => {
-    if (question.trim() === '') {
-      toast.error('Please enter a question');
+    if (question.trim() === "") {
+      toast.error("Please enter a question");
       return;
     }
 
-    handleAddQuestion({ question, answer: '' });
-    toast.success('Question submitted successfully');
-    setQuestion('');
+    handleAddQuestion({ question, answer: "" });
+    toast.success("Question submitted successfully");
+    setQuestion("");
     handleClose();
   };
 
@@ -24,14 +24,14 @@ const QuestionForm = ({ open, handleClose, handleAddQuestion }) => {
       aria-labelledby="ask-question-title"
       aria-describedby="ask-question-description"
     >
-      <Box 
+      <Box
         sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
           width: 400,
-          bgcolor: 'background.paper',
+          bgcolor: "background.paper",
           boxShadow: 24,
           p: 4,
           borderRadius: 1,
@@ -49,21 +49,21 @@ const QuestionForm = ({ open, handleClose, handleAddQuestion }) => {
           sx={{ mb: 2 }}
         />
         <Box display="flex" justifyContent="center">
-          <Button 
+          <Button
             variant="contained"
             color="primary"
             onClick={handleSubmit}
             sx={{
-              padding: '10px 20px',
-              color: 'black',
-              fontSize: '12px',
-              fontWeight: 'bold',
-              borderRadius: '30px',
-              backgroundColor: '#cccccc',
-              '&:hover': {
-                backgroundColor: '#bfbfbf',
+              padding: "10px 20px",
+              color: "black",
+              fontSize: "12px",
+              fontWeight: "bold",
+              borderRadius: "30px",
+              backgroundColor: "#cccccc",
+              "&:hover": {
+                backgroundColor: "#bfbfbf",
               },
-            }}  
+            }}
           >
             Submit
           </Button>
