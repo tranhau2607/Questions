@@ -1,22 +1,23 @@
-import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage'
-import Header from './components/header';
-import Footer from './components/footer';
-import About from './pages/user/About'
-import Login from './auth/Login';
-import Register from './auth/Register';
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Header from "./components/header";
+import Footer from "./components/footer";
+
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+
+import HomePageAdmin from "./pages/admin/HomePageAdmin";
 function App() {
   return (
     <>
-    <Header/>
+      <Header />
       <Routes>
-        <Route path='/' element={<HomePage/>}></Route>
-        <Route path='/about' element={<About/>}></Route>
-        <Route path='/login' element={<Login/>}></Route>
-        <Route path='/register' element={<Register/>}></Route>
-
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/try" element={<HomePageAdmin />}></Route>
       </Routes>
-    <Footer/>
+      <Footer />
     </>
   );
 }

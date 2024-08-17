@@ -12,14 +12,14 @@ const StyledCard = styled(Card)({
   borderRadius: '10px',
 });
 
-const CardInner = styled('div')(({ isFlipped }) => ({
-  position: 'relative',
-  width: '100%',
-  height: '100%',
-  transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-  transformStyle: 'preserve-3d',
-  transition: 'transform 0.6s ease-in-out',
-  borderRadius: '10px',
+const CardInner = styled("div")(({ isFlipped }) => ({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+  transformStyle: "preserve-3d",
+  transition: "transform 0.6s ease-in-out",
+  borderRadius: "10px",
 }));
 
 const CardFace = styled(CardContent)({
@@ -37,7 +37,7 @@ const CardFace = styled(CardContent)({
 });
 
 const CardFront = styled(CardFace)({
-  backgroundColor: '#f5f5f5',
+  backgroundColor: "#f5f5f5",
 });
 
 const CardBack = styled(CardFace)({

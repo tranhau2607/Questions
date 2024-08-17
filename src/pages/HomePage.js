@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import QuestionCard from '../components/QuestionCard';
-import QuestionForm from '../components/QuestionForm';
-import { Button, Box } from '@mui/material';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import QuestionCard from "../components/QuestionCard";
 
 const HomePage = () => {
   const [questions, setQuestions] = useState([]);
@@ -12,31 +8,39 @@ const HomePage = () => {
   const isLoggedIn = !!localStorage.getItem('token');
 
   useEffect(() => {
-    axios.get('https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726')
-      .then(response => setQuestions(response.data));
+    axios
+      .get(
+        "https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726"
+      )
+      .then((response) => setQuestions(response.data));
   }, []);
 
   const handleAddQuestion = (question) => {
-    axios.post('https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726', question)
-      .then(response => setQuestions([...questions, response.data]));
+    axios
+      .post(
+        "https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726",
+        question
+      )
+      .then((response) => setQuestions([...questions, response.data]));
   };
 
   const handleUpdateQuestion = (id, updatedQuestion) => {
-    axios.put(`https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726/${id}`, updatedQuestion)
-      .then(response => setQuestions(questions.map(q => q.id === id ? response.data : q)));
+    axios
+      .put(
+        `https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726/${id}`,
+        updatedQuestion
+      )
+      .then((response) =>
+        setQuestions(questions.map((q) => (q.id === id ? response.data : q)))
+      );
   };
 
   const handleDeleteQuestion = (id) => {
-    axios.delete(`https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726/${id}`)
-      .then(() => setQuestions(questions.filter(q => q.id !== id)));
-  };
-
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
-
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
+    axios
+      .delete(
+        `https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726/${id}`
+      )
+      .then(() => setQuestions(questions.filter((q) => q.id !== id)));
   };
 
   return (
@@ -72,13 +76,6 @@ const HomePage = () => {
           />
         ))}
       </div>
-
-      <QuestionForm
-        open={isPopupOpen}
-        handleClose={handleClosePopup}
-        handleAddQuestion={handleAddQuestion}
-      />
-      <ToastContainer />
     </div>
   );
 };
