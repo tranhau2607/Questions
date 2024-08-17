@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { doc, setDoc } from 'firebase/firestore'
 import { getCustomErrorMessage } from './CustomErrorMessages'
 import './Register.css'
+import { Link } from 'react-router-dom'
 const Register = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -90,6 +91,7 @@ const Register = () => {
             Sign Up
           </button>
         </form>
+        <Link to={"/login"} className="menu-item">Login</Link>
       </Container>
     </div>
   )
