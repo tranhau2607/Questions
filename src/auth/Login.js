@@ -31,7 +31,7 @@ const Login = () => {
         alert("Welcome User");
         sessionStorage.setItem("role", "user");
         sessionStorage.setItem("Email", email);
-        navigate("/try");
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
