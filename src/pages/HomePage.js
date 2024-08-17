@@ -4,7 +4,8 @@ import QuestionCard from "../components/QuestionCard";
 
 const HomePage = () => {
   const [questions, setQuestions] = useState([]);
-  const role = localStorage.getItem("role");
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const isLoggedIn = !!localStorage.getItem('token');
 
   useEffect(() => {
     axios
@@ -43,17 +44,36 @@ const HomePage = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: '20px' }}>
+      <Box display="flex" justifyContent="center" marginBottom="20px">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleOpenPopup}
+          sx={{
+            padding: '10px 20px',
+            color: 'black',
+            fontSize: '14px',
+            fontWeight: 'bold',
+            borderRadius: '30px',
+            backgroundColor: '#cccccd',
+            '&:hover': {
+              backgroundColor: '#bfbfbf',
+            },
+          }}
+        >
+          Ask Questions
+        </Button>
+      </Box>
       <h2>Q&A</h2>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-        }}
-      >
-        {questions.map((q) => (
-          <QuestionCard key={q.id} question={q} />
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+        {questions.map(q => (
+          <QuestionCard
+            key={q.id}
+            question={q}
+            handleUpdateQuestion={handleUpdateQuestion}
+            handleDeleteQuestion={handleDeleteQuestion}
+          />
         ))}
       </div>
     </div>
