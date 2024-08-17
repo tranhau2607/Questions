@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import QuestionCard from "../components/QuestionCard";
-
+import QuestionForm from '../components/QuestionForm';
+import { Button, Box } from '@mui/material';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const HomePage = () => {
   const [questions, setQuestions] = useState([]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -14,7 +17,13 @@ const HomePage = () => {
       )
       .then((response) => setQuestions(response.data));
   }, []);
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
 
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
   const handleAddQuestion = (question) => {
     axios
       .post(
@@ -76,6 +85,12 @@ const HomePage = () => {
           />
         ))}
       </div>
+      <QuestionForm
+        open={isPopupOpen}
+        handleClose={handleClosePopup}
+        handleAddQuestion={handleAddQuestion}
+      />
+      <ToastContainer />
     </div>
   );
 };
