@@ -25,7 +25,7 @@ const Login = () => {
         alert("Welcome Admin");
         sessionStorage.setItem("role", "admin");
         sessionStorage.setItem("Email", email);
-        navigate("/try");
+        navigate("/");
       } else {
         await signInWithEmailAndPassword(auth, email, password);
         alert("Welcome User");
