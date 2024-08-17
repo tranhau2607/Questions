@@ -1,14 +1,15 @@
 import './style.css'
 import Logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom';
-function Footer() {
+const Footer=()=> {
     return (
         <>
             <div className='footer'>
                 <div className='container'>
                     <div className="row">
                         <div className="col">
-                            <div className="p-3"><Link to={"/"}>
+                            <div className="p-3">
+                                <Link to={"/"}>
                                 <img src={Logo} className='logo' alt='Logo' />
                             </Link></div>
                         </div>
