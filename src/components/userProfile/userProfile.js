@@ -11,7 +11,8 @@ import {
   Divider,
   Container,
   Button,
-  Grid
+  Grid,
+  CircularProgress
 } from '@mui/material'
 
 const QUESTIONS_PER_PAGE = 5
@@ -20,7 +21,7 @@ const UserProfile = () => {
   const [user, setUser] = useState(null)
   const [questionHistory, setQuestionHistory] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const auth = getAuth()
     const currentUser = auth.currentUser
@@ -39,17 +40,33 @@ const UserProfile = () => {
           const userQuestions = questions.filter(question => question.uid === currentUser.uid)
           const sortedQuestions = userQuestions.sort((a, b) => a.uid.localeCompare(b.uid))
           setQuestionHistory(sortedQuestions)
+          setLoading(false);
         })
         .catch(error => {
           console.error('Error fetching question history:', error)
         })
+        .finally(() => {
+          setLoading(false);
+        })
     }
   }, [])
 
-  // Pagination logic
   const totalPages = Math.ceil(questionHistory.length / QUESTIONS_PER_PAGE)
   const startIndex = (currentPage - 1) * QUESTIONS_PER_PAGE
   const currentQuestions = questionHistory.slice(startIndex, startIndex + QUESTIONS_PER_PAGE)
+
+  if (loading) {
+    return (
+      <Box
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        minHeight='100vh'
+      >
+        <CircularProgress color='secondary' />
+      </Box>
+    );
+  }
 
   return (
     <Container maxWidth='md'>
