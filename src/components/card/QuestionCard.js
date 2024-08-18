@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material";
+import { getAuth } from "firebase/auth";
+
 
 const StyledCard = styled(Card)({
   width: "250px",
@@ -72,6 +74,9 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [editedQuestion, setEditedQuestion] = useState(question.question);
+  const auth = getAuth();
+  const currentUser = auth.currentUser;
+  const currentUserUid = currentUser ? currentUser.uid : null;
   const role = sessionStorage.getItem('role');
 
   const handleFlip = () => {
@@ -116,7 +121,6 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
   };
 
   return (
-    
     <StyledCard onClick={handleCardClick}>
       <CardInner isFlipped={isFlipped}>
         <CardFront>
@@ -130,7 +134,8 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
             bottom="10px"
             right="10px"
           >
-            {role === 'user' && (
+            
+            {role === 'user' && currentUserUid === question.uid && (
               <>
                 <IconButton size="small" onClick={openEditModal}>
                   <EditIcon />
@@ -148,9 +153,8 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
           </Typography>
         </CardBack>
       </CardInner>
-      {role === 'user' && (
+      {role === 'user' && currentUserUid === question.uid && (
         <>
-         
           <Modal
             open={isEditModalOpen}
             onClose={closeEditModal}
@@ -181,27 +185,26 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
                 sx={{ mb: 2 }}
               />
               <Box display="flex" justifyContent="center">
-              <StyledButton
-                onClick={handleEditSubmit}
-                sx={{
-                  padding: '10px 20px',
-                  color: 'white', // Màu chữ
-                  fontSize: '12px',
-                  fontWeight: 'bold',
-                  borderRadius: '30px',
-                  background: 'linear-gradient(135deg, #d0d0ff, #f2c0d0)',
-                  '&:hover': {
-                    background: 'linear-gradient(135deg, #b0b0ff, #e0b0c0)' 
-                  }
-                }}
-              >
-                Submit
-              </StyledButton>
+                <StyledButton
+                  onClick={handleEditSubmit}
+                  sx={{
+                    padding: '10px 20px',
+                    color: 'white',
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                    borderRadius: '30px',
+                    background: 'linear-gradient(135deg, #d0d0ff, #f2c0d0)',
+                    '&:hover': {
+                      background: 'linear-gradient(135deg, #b0b0ff, #e0b0c0)' 
+                    }
+                  }}
+                >
+                  Submit
+                </StyledButton>
               </Box>
             </Box>
           </Modal>
 
-    
           <Modal
             open={isDeleteDialogOpen}
             onClose={closeDeleteDialog}
@@ -229,22 +232,22 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
                 Are you sure you want to delete this question?
               </Typography>
               <Box display="flex" justifyContent="center">
-              <StyledButton
-                onClick={handleDeleteSubmit}
-                sx={{
-                  padding: '10px 20px',
-                  color: 'white', 
-                  fontSize: '12px',
-                  fontWeight: 'bold',
-                  borderRadius: '30px',
-                  background: 'linear-gradient(135deg, #d0d0ff, #f2c0d0)', 
-                  '&:hover': {
-                    background: 'linear-gradient(135deg, #b0b0ff, #e0b0c0)' 
-                  }
-                }}
-              >
-                Delete
-              </StyledButton>
+                <StyledButton
+                  onClick={handleDeleteSubmit}
+                  sx={{
+                    padding: '10px 20px',
+                    color: 'white', 
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                    borderRadius: '30px',
+                    background: 'linear-gradient(135deg, #d0d0ff, #f2c0d0)', 
+                    '&:hover': {
+                      background: 'linear-gradient(135deg, #b0b0ff, #e0b0c0)' 
+                    }
+                  }}
+                >
+                  Delete
+                </StyledButton>
               </Box>
             </Box>
           </Modal>
