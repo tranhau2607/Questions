@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-import { IoSearchSharp } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import LogoColor from "../../../assets/images/logo-color.png";
 import { useNavigate } from "react-router-dom";
-function Menu() {
-  const [isSearch, setIsSearch] = useState(false);
-  const openSearch = () => {
-    setIsSearch((prevState) => !prevState);
-  };
 
+function Menu() {
   const Email = sessionStorage.getItem("Email");
 
   const navigate = useNavigate();
@@ -19,6 +14,7 @@ function Menu() {
     sessionStorage.removeItem("role");
     navigate("/login");
   };
+
   return (
     <>
       <div className="menu">
@@ -27,42 +23,41 @@ function Menu() {
             <img src={LogoColor} className="logo" alt="Logo" />
           </Link>
         </div>
+
+        
         <div className="navbar">
           <li>
             <Link to={"/"} className="menu-item">
               Home
             </Link>
           </li>
-        </div>
-        <div className="menu-icon">
-          <div>
-            <div className={`search ${isSearch ? "active" : ""}`}>
-              <input type="search" placeholder="Tìm kiếm....." />
-            </div>
-            <Link to={"#"} className="menu-item" onClick={openSearch}>
-              <IoSearchSharp />
-            </Link>
+          <div className="search-bar" >
+            <input type="search" placeholder="Search..." />
           </div>
+        </div>
+
+        <div className="menu-icon">
           <div className="info-main">
             {Email ? (
-              <div class="dropdown">
+              <div className="dropdown">
                 <button
-                  class="btn btn-secondary dropdown-toggle"
+                  className="btn profile-button dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  profile
+                  Profile
                 </button>
-                <ul class="dropdown-menu">
+                <ul className="dropdown-menu">
                   <li>{Email}</li>
+                  
                   <li>
-                    <Link class="btn" to={"/userProfile"}>
+                    <Link className="btn" to={"/userProfile"}>
                       Profile
                     </Link>
                   </li>
                   <li>
-                    <button class="btn" onClick={Logout}>
+                    <button className="btn" onClick={Logout}>
                       Logout
                     </button>
                   </li>

@@ -86,7 +86,7 @@ const HomePage = () => {
     return questions.map(q => <QuestionCard key={q.id} question={q} />);
   };
   
-  // Hien hieu ung load
+  
   if (loading) {
     return (
       <Box
@@ -99,7 +99,7 @@ const HomePage = () => {
       </Box>
     );
   }
-  //
+  
 
   return (
     <div className="gradient-background">
@@ -115,7 +115,7 @@ const HomePage = () => {
               fontSize: '14px',
               fontWeight: 'bold',
               borderRadius: '30px',
-              backgroundColor: '#ffffff', // Đặt nền thành màu trắng
+              backgroundColor: '#ffffff',
                 '&:hover': {
               backgroundColor: '#f2f2f2'
               }

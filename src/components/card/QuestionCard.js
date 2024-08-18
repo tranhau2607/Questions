@@ -148,7 +148,7 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
       </CardInner>
       {role === 'user' && (
         <>
-          {/* Edit Question Modal */}
+         
           <Modal
             open={isEditModalOpen}
             onClose={closeEditModal}
@@ -199,7 +199,7 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
             </Box>
           </Modal>
 
-          {/* Delete Confirmation Dialog */}
+    
           <Modal
             open={isDeleteDialogOpen}
             onClose={closeDeleteDialog}

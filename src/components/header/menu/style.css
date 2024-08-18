@@ -14,6 +14,7 @@
 .navbar li {
   list-style: none;
   padding: 10px 20px;
+  margin-right: 200px;
 }
 .menu-item {
   text-decoration: none;
@@ -55,4 +56,40 @@
 }
 .dropdown-menu li {
   padding-left: 10px;
+}
+
+
+.menu-item {
+  margin-right: 20px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+
+.search-bar {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input[type="search"] {
+  width: 300px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.profile-button {
+  padding: 8px 20px;
+  border-radius: 20px; 
+  background: linear-gradient(135deg, #d0d0ff, #f2c0d0); 
+  border: none; 
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.profile-button:hover {
+  background: linear-gradient(135deg, #b0b0ff, #e0b0c0); 
 }
