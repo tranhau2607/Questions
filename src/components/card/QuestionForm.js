@@ -54,15 +54,15 @@ const QuestionForm = ({ open, handleClose, handleAddQuestion }) => {
             color="primary"
             onClick={handleSubmit}
             sx={{
-              padding: "10px 20px",
-              color: "black",
-              fontSize: "12px",
-              fontWeight: "bold",
-              borderRadius: "30px",
-              backgroundColor: "#cccccc",
-              "&:hover": {
-                backgroundColor: "#bfbfbf",
-              },
+              padding: '10px 20px',
+              color: 'white', // Màu chữ
+              fontSize: '12px',
+              fontWeight: 'bold',
+              borderRadius: '30px',
+              background: 'linear-gradient(135deg, #d0d0ff, #f2c0d0)', 
+              '&:hover': {
+                background: 'linear-gradient(135deg, #b0b0ff, #e0b0c0)' 
+              }
             }}
           >
             Submit

@@ -16,20 +16,26 @@ const HomePage = () => {
   const role = sessionStorage.getItem('role');
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => { 
+  useEffect(() => {
     const auth = getAuth();
     const currentUser = auth.currentUser;
-    console.log('currentUser', currentUser);
-        
+  
+    if (currentUser) {
+      console.log('currentUser', currentUser);
+    } else {
+      console.log("No user is currently logged in.");
+    }
+  
     axios
       .get('https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726')
       .then(response => {
-        setQuestions(response.data); 
+        setQuestions(response.data);
         setLoading(false);
       })
       .catch(error => console.error(error))
       .finally(() => setLoading(false));
   }, []);
+  
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -39,11 +45,26 @@ const HomePage = () => {
     setIsPopupOpen(false);
   };
 
-  const handleAddQuestion = question => {
-    axios
-      .post('https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726', question)
-      .then(response => setQuestions([...questions, response.data]));
+  const handleAddQuestion = (question) => {
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+  
+    if (currentUser) {
+      const newQuestion = {
+        ...question,
+        uid: currentUser.uid,
+        // displayName: currentUser.displayName || "Anonymous", 
+      };
+  
+      axios
+        .post('https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726', newQuestion)
+        .then((response) => setQuestions([...questions, response.data]))
+        .catch((error) => console.error("Error posting question:", error));
+    } else {
+      console.error("No user is currently logged in.");
+    }
   };
+  
 
   const handleUpdateQuestion = (id, updatedQuestion) => {
     axios

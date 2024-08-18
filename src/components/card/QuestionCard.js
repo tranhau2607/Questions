@@ -19,6 +19,8 @@ const StyledCard = styled(Card)({
   perspective: "1000px",
   boxShadow: "none",
   borderRadius: "10px",
+  background: "linear-gradient(135deg, #d0d0ff, #f2c0d0)", 
+  position: "relative", 
 });
 
 const CardInner = styled("div")(({ isFlipped }) => ({
@@ -39,18 +41,17 @@ const CardFace = styled(CardContent)({
   alignItems: "center",
   justifyContent: "center",
   backfaceVisibility: "hidden",
-  backgroundColor: "#f5f5f5",
+  backgroundColor: "#ffffff", 
   border: "1px solid #ccc",
   borderRadius: "10px",
   boxShadow: "none",
 });
 
 const CardFront = styled(CardFace)({
-  backgroundColor: "#f5f5f5",
+  transform: "rotateY(0deg)",
 });
 
 const CardBack = styled(CardFace)({
-  backgroundColor: "#e0e0e0",
   transform: "rotateY(180deg)",
 });
 
@@ -115,6 +116,7 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
   };
 
   return (
+    
     <StyledCard onClick={handleCardClick}>
       <CardInner isFlipped={isFlipped}>
         <CardFront>
@@ -187,9 +189,9 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
                   fontSize: '12px',
                   fontWeight: 'bold',
                   borderRadius: '30px',
-                  background: 'linear-gradient(135deg, #d0d0ff, #f2c0d0)', // Màu gradient
+                  background: 'linear-gradient(135deg, #d0d0ff, #f2c0d0)',
                   '&:hover': {
-                    background: 'linear-gradient(135deg, #b0b0ff, #e0b0c0)' // Gradient khi hover
+                    background: 'linear-gradient(135deg, #b0b0ff, #e0b0c0)' 
                   }
                 }}
               >
