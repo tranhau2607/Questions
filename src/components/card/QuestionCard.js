@@ -228,7 +228,7 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
               </Typography>
               <Box display="flex" justifyContent="center">
               <StyledButton
-                onClick={handleEditSubmit}
+                onClick={handleDeleteSubmit}
                 sx={{
                   padding: '10px 20px',
                   color: 'white', 
