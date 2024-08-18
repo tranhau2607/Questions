@@ -1,64 +1,65 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import QuestionCard from '../components/card/QuestionCard'
-import QuestionCardAdmin from '../components/card/QuestionCardAdmin'
-import QuestionForm from '../components/card/QuestionForm'
-import { Button, Box, CircularProgress } from '@mui/material'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { toast } from 'react-toastify'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { getAuth } from 'firebase/auth';
+import QuestionCard from '../components/card/QuestionCard';
+import QuestionCardAdmin from '../components/card/QuestionCardAdmin';
+import QuestionForm from '../components/card/QuestionForm';
+import { Button, Box, CircularProgress } from '@mui/material';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import './HomePage.css';
+
 const HomePage = () => {
-  const [questions, setQuestions] = useState([])
-  const [isPopupOpen, setIsPopupOpen] = useState(false)
-  const role = sessionStorage.getItem('role')
-  const [loading, setLoading] = useState(true)
-  useEffect(() => {
+  const [questions, setQuestions] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const role = sessionStorage.getItem('role');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => { 
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+    console.log('currentUser', currentUser);
+        
     axios
-      .get(
-        'https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726'
-      )
+      .get('https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726')
       .then(response => {
         setQuestions(response.data); 
-        setLoading(false)
+        setLoading(false);
       })
       .catch(error => console.error(error))
-      .finally(() => setLoading(false))
-  }, [])
+      .finally(() => setLoading(false));
+  }, []);
+
   const handleOpenPopup = () => {
-    setIsPopupOpen(true)
-  }
+    setIsPopupOpen(true);
+  };
 
   const handleClosePopup = () => {
-    setIsPopupOpen(false)
-  }
+    setIsPopupOpen(false);
+  };
+
   const handleAddQuestion = question => {
     axios
-      .post(
-        'https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726',
-        question
-      )
-      .then(response => setQuestions([...questions, response.data]))
-  }
+      .post('https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726', question)
+      .then(response => setQuestions([...questions, response.data]));
+  };
 
   const handleUpdateQuestion = (id, updatedQuestion) => {
     axios
-      .put(
-        `https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726/${id}`,
-        updatedQuestion
-      )
+      .put(`https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726/${id}`, updatedQuestion)
       .then(response =>
         setQuestions(questions.map(q => (q.id === id ? response.data : q)))
-      )
-  }
+      );
+  };
 
   const handleDeleteQuestion = id => {
     axios
-      .delete(
-        `https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726/${id}`
-      )
-      .then(() => setQuestions(questions.filter(q => q.id !== id)))
-    toast.success('Deleted successfully')
-  }
+      .delete(`https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726/${id}`)
+      .then(() => setQuestions(questions.filter(q => q.id !== id)));
+    toast.success('Deleted successfully');
+  };
+
   const checkLogin = () => {
     if (role === 'admin') {
       return questions.map(q => (
@@ -68,7 +69,7 @@ const HomePage = () => {
           onUpdate={handleUpdateQuestion}
           onDelete={handleDeleteQuestion}
         />
-      ))
+      ));
     }
 
     if (role === 'user') {
@@ -79,11 +80,11 @@ const HomePage = () => {
           handleUpdateQuestion={handleUpdateQuestion}
           handleDeleteQuestion={handleDeleteQuestion}
         />
-      ))
+      ));
     }
 
-    return questions.map(q => <QuestionCard key={q.id} question={q} />)
-  }
+    return questions.map(q => <QuestionCard key={q.id} question={q} />);
+  };
   
   // Hien hieu ung load
   if (loading) {
@@ -101,7 +102,7 @@ const HomePage = () => {
   //
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="gradient-background">
       {role === 'user' && (
         <Box display='flex' justifyContent='center' marginBottom='20px'>
           <Button
@@ -114,9 +115,9 @@ const HomePage = () => {
               fontSize: '14px',
               fontWeight: 'bold',
               borderRadius: '30px',
-              backgroundColor: '#cccccd',
-              '&:hover': {
-                backgroundColor: '#bfbfbf'
+              backgroundColor: '#ffffff', // Đặt nền thành màu trắng
+                '&:hover': {
+              backgroundColor: '#f2f2f2'
               }
             }}
           >
@@ -142,7 +143,7 @@ const HomePage = () => {
       />
       <ToastContainer />
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

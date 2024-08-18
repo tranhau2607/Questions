@@ -34,7 +34,7 @@ const UserProfile = () => {
       
   //API Test: https://66931ef7c6be000fa079c642.mockapi.io/KhangLPSE161421/Test
   //API Real: 
-      axios.get('https://66931ef7c6be000fa079c642.mockapi.io/KhangLPSE161421/Test')
+      axios.get('https://66938e56c6be000fa07c1307.mockapi.io/question/tamplmse182726')
         .then(response => {
           const questions = response.data
           const userQuestions = questions.filter(question => question.uid === currentUser.uid)
