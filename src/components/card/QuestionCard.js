@@ -14,13 +14,13 @@ import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material";
 import { getAuth } from "firebase/auth";
 import { CiHeart } from "react-icons/ci";
 const StyledCard = styled(Card)({
-  width: "250px",
-  height: "300px",
+  width: "220px",
+  height: "270px",
   margin: "20px",
   perspective: "1000px",
   boxShadow: 'none',
   borderRadius: "10px",
-  background: "linear-gradient(135deg, #e5e5fc, #ffe3ec, #e4e4fa)",
+  background: "linear-gradient(135deg, #ebebff, #fbe4eb, #ececff)",
   position: "relative",
 });
 
@@ -141,9 +141,10 @@ const QuestionCard = ({
             variant="h6"
             component="div"
             sx={{
-              textTransform: "uppercase",
-              fontSize: "1.3rem",
+              textTransform: "none",
+              fontSize: "1.2rem",
               textAlign: "center",
+              margin: '8px',
             }}
           >
             {question.question}

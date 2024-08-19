@@ -45,14 +45,14 @@
 .profile-button {
   padding: 5px 15px;
   border-radius: 20px;
-  border: 1px solid rgb(249, 170, 201);
+  border: 1px solid rgb(255, 66, 142);
   color: black;
   font-weight: bold;
   cursor: pointer;
 }
 
 .profile-button:hover {
-  background: linear-gradient(135deg, #b0b0ff, #e0b0c0);
+  background: linear-gradient(135deg, #dadaff, #ffd8e5);
 }
 /*
 .search {
@@ -84,13 +84,13 @@
   padding: 6px;
 
   border-radius: 20px 0 0 20px;
-  border: 0.5px solid rgb(249, 170, 201);
+  border: 0.5px solid rgb(255, 109, 167);
 }
 .bar input[type="search"]:focus {
-  outline: 2px solid rgb(177, 52, 152);
+  outline: 2px solid rgb(255, 57, 176);
 }
 .bar button {
-  background-color: #f3beef;
+  background-color: #ff70c6;
   border: none;
   color: white;
   padding: 7px;

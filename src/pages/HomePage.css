@@ -8,7 +8,7 @@ body, html {
   
   .gradient-background {
     height: 100%;
-    background: linear-gradient(135deg, #e5e5fc, #ffe3ec, #e4e4fa);
+    background: linear-gradient(135deg, #ebebff, #fbe4eb, #ececff);
     background-size: cover;
     align-items: center;
     justify-content: center;

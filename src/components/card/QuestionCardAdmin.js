@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { CiLocationArrow1 } from "react-icons/ci";
 
 const StyledCard = styled(Card)({
-  width: "300px",
+  width: "290px",
   margin: "20px",
   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
   borderRadius: "10px",
@@ -28,6 +28,7 @@ const CardFront = styled(CardContent)({
   alignItems: "flex-start",
   borderRadius: "10px",
   color: "#072626",
+  height: "100%",
 });
 
 const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
@@ -92,7 +93,7 @@ const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
           )}
 
           {role === "admin" && !showAnswer && (
-            <Box>
+            <Box sx={{ width: "100%" }}>
               <TextField
                 label="Answer"
                 variant="outlined"
@@ -106,17 +107,23 @@ const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
                 justifyContent="space-between"
                 alignItems="center"
                 marginTop="5px"
+                width="100%" 
               >
                 <IconButton
                   onClick={handleUpdate}
                   color="primary"
                   disabled={answer.trim() === ""}
+                  sx={{ flexGrow: 1 }} 
                 >
                   <Typography variant="body2">
                     <CiLocationArrow1 style={{ fontSize: "1.5rem" }} />
                   </Typography>
                 </IconButton>
-                <IconButton onClick={() => onDelete(question.id)} color="error">
+                <IconButton
+                  onClick={() => onDelete(question.id)}
+                  color="error"
+                  sx={{ flexGrow: 1 }} 
+                >
                   <DeleteIcon />
                 </IconButton>
               </Box>
@@ -129,3 +136,4 @@ const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
 };
 
 export default QuestionCardAdmin;
+  

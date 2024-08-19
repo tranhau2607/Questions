@@ -96,6 +96,7 @@ const UserProfile = () => {
   }
 
   return (
+    <div className="gradient-background">
     <Container maxWidth='lg' sx={{ height: '100vh' }}>
       <Box
         sx={{ margin: '0 auto', p: 3, display: 'flex', flexDirection: 'row' }}
@@ -128,7 +129,7 @@ const UserProfile = () => {
                 alignItems: 'center',
               }}
               >
-                <Typography variant='h6' sx={{ mb: 1 }}>
+                <Typography variant='h5' sx={{ mb: 1 }}>
                   Question Post History
                 </Typography>
                 <List>
@@ -266,6 +267,7 @@ const UserProfile = () => {
         )}
       </Box>
     </Container>
+    </div>
   )
 }
 
