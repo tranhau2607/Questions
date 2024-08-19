@@ -1,5 +1,11 @@
-import React, { useState } from 'react'
-import { Container, TextField, Typography } from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import {
+  Container,
+  TextField,
+  Typography,
+  CircularProgress,
+  Box
+} from '@mui/material'
 import { auth, firestore } from '../firebase-config'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
@@ -14,8 +20,11 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
-
+  useEffect(() => {
+    setLoading(false)
+  }, [])
   const handleSignup = async e => {
     e.preventDefault()
     setError('')
@@ -34,22 +43,33 @@ const Register = () => {
       const user = userCredential.user
 
       await updateProfile(user, {
-        displayName: displayName,
+        displayName: displayName
       })
 
       await setDoc(doc(firestore, 'users', user.uid), {
         email: user.email,
         displayName: displayName,
-        role: 'user',
+        role: 'user'
       })
 
-      navigate('/')
+      navigate('/login')
     } catch (error) {
       const errorMessage = getCustomErrorMessage(error.code)
       setError(errorMessage)
     }
   }
-
+  if (loading) {
+    return (
+      <Box
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        minHeight='100vh'
+      >
+        <CircularProgress />
+      </Box>
+    )
+  }
   return (
     <div className='register-page'>
       <video autoPlay muted loop className='background-video'>
@@ -107,7 +127,7 @@ const Register = () => {
             Sign Up
           </button>
         </form>
-        <Link to={"/login"} className="menu-item">Login</Link>
+        <p className='login-link' style={{ marginTop: '10px' , textAlign: 'center'}}>Already have an account?{' '} <Link to='/login' className='menu-item'>Login</Link></p>
       </Container>
     </div>
   )

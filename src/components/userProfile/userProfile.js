@@ -47,18 +47,17 @@ const UserProfile = () => {
             a.uid.localeCompare(b.uid)
           )
           setQuestionHistory(sortedQuestions)
-          setLoading(false)
+          setLoading(false);
         })
         .catch(error => {
           console.error('Error fetching question history:', error)
         })
         .finally(() => {
-          setLoading(false)
+          setLoading(false);
         })
     }
   }, [])
 
-  // Pagination logic
   const totalPages = Math.ceil(questionHistory.length / QUESTIONS_PER_PAGE)
   const startIndex = (currentPage - 1) * QUESTIONS_PER_PAGE
   const currentQuestions = questionHistory.slice(
@@ -81,6 +80,19 @@ const UserProfile = () => {
         <CircularProgress color='secondary' />
       </Box>
     )
+  }
+
+  if (loading) {
+    return (
+      <Box
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        minHeight='100vh'
+      >
+        <CircularProgress color='secondary' />
+      </Box>
+    );
   }
 
   return (
