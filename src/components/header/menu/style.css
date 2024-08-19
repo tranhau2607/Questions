@@ -14,13 +14,13 @@
 .navbar li {
   list-style: none;
   padding: 10px 20px;
-  margin-right: 200px;
 }
 .menu-item {
   text-decoration: none;
   color: black;
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 1.2rem;
 }
 .menu-item:hover {
   color: rgb(94, 78, 78);
@@ -31,8 +31,30 @@
 }
 .menu-icon .menu-item {
   padding: 0px 6px;
-  font-size: 20px;
+  font-size: 25px;
 }
+
+.dropdown-menu li {
+  padding-left: 10px;
+}
+.dropdown .btn-main {
+  background: #fff;
+  color: black;
+}
+
+.profile-button {
+  padding: 5px 15px;
+  border-radius: 20px;
+  border: 1px solid rgb(79, 78, 78);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.profile-button:hover {
+  background: linear-gradient(135deg, #b0b0ff, #e0b0c0);
+}
+/*
 .search {
   display: none;
   position: absolute;
@@ -54,42 +76,24 @@
   padding: 5px;
   width: 440px;
 }
-.dropdown-menu li {
-  padding-left: 10px;
+*/
+.search {
+  padding-right: 30px;
 }
+.bar input[type="search"] {
+  padding: 6px;
 
-
-.menu-item {
-  margin-right: 20px;
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid rgb(84, 82, 82);
 }
-
-
-.search-bar {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
+.bar input[type="search"]:focus {
+  outline: 2px solid rgb(84, 82, 82);
 }
-
-.search-bar input[type="search"] {
-  width: 300px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-}
-
-.profile-button {
-  padding: 8px 20px;
-  border-radius: 20px; 
-  background: linear-gradient(135deg, #d0d0ff, #f2c0d0); 
-  border: none; 
-  color: black;
-  font-weight: bold;
+.bar button {
+  background-color: #373738;
+  border: none;
+  color: white;
+  padding: 7px;
   cursor: pointer;
-}
-
-.profile-button:hover {
-  background: linear-gradient(135deg, #b0b0ff, #e0b0c0); 
+  border-radius: 0 10px 10px 0;
 }

@@ -11,22 +11,23 @@ import {
 import { styled } from "@mui/system";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-toastify";
+import { CiLocationArrow1 } from "react-icons/ci";
 
 const StyledCard = styled(Card)({
   width: "300px",
   margin: "20px",
-  boxShadow: "none",
+  boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
   borderRadius: "10px",
+  border: "1px solid #ccc",
 });
 
 const CardFront = styled(CardContent)({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
-  backgroundColor: "#ffffff",
+  alignItems: "flex-start",
   borderRadius: "10px",
-  padding: "16px",
-  boxShadow: "none",
+  color: "#072626",
 });
 
 const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
@@ -49,11 +50,21 @@ const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
     <StyledCard>
       <CardActionArea sx={{ height: "100%" }}>
         <CardFront>
-          <Typography variant="h6" component="div" gutterBottom>
-            {question.question}
-          </Typography>
+          {role === "admin" && (
+            <>
+              <Typography
+                variant="subtitle2"
+                color="text.secondary"
+                gutterBottom
+              >
+                User: {question.displayName}
+              </Typography>
+              <Typography variant="h6" gutterBottom>
+                {question.question}
+              </Typography>
+            </>
+          )}
 
-          {/* Hiển thị câu trả lời bên user */}
           {role === "user" && showAnswer && (
             <Typography
               variant="body1"
@@ -63,11 +74,10 @@ const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
                 whiteSpace: "normal",
               }}
             >
-              Admin: {question.answer}
+              {question.answer}
             </Typography>
           )}
 
-          {/* Hiển thị câu trả lời bên admin */}
           {role === "admin" && showAnswer && (
             <Typography
               variant="body1"
@@ -81,8 +91,7 @@ const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
             </Typography>
           )}
 
-          {/* Nếu là admin, hiển thị ô nhập câu trả lời và các nút chức năng */}
-          {role === "admin" && (
+          {role === "admin" && !showAnswer && (
             <Box>
               <TextField
                 label="Answer"
@@ -98,8 +107,14 @@ const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
                 alignItems="center"
                 marginTop="5px"
               >
-                <IconButton onClick={handleUpdate} color="primary">
-                  <Typography variant="body2">Reply</Typography>
+                <IconButton
+                  onClick={handleUpdate}
+                  color="primary"
+                  disabled={answer.trim() === ""}
+                >
+                  <Typography variant="body2">
+                    <CiLocationArrow1 style={{ fontSize: "1.5rem" }} />
+                  </Typography>
                 </IconButton>
                 <IconButton onClick={() => onDelete(question.id)} color="error">
                   <DeleteIcon />

@@ -12,17 +12,17 @@ import {
 import { styled } from "@mui/system";
 import { Edit as EditIcon, Delete as DeleteIcon } from "@mui/icons-material";
 import { getAuth } from "firebase/auth";
-
-
+import { CiHeart } from "react-icons/ci";
 const StyledCard = styled(Card)({
   width: "250px",
   height: "300px",
   margin: "20px",
   perspective: "1000px",
-  boxShadow: "none",
+  boxShadow:
+    "rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;",
   borderRadius: "10px",
-  background: "linear-gradient(135deg, #d0d0ff, #f2c0d0)", 
-  position: "relative", 
+  //background: "linear-gradient(135deg, #d0d0ff, #f2c0d0)",
+  position: "relative",
 });
 
 const CardInner = styled("div")(({ isFlipped }) => ({
@@ -43,17 +43,22 @@ const CardFace = styled(CardContent)({
   alignItems: "center",
   justifyContent: "center",
   backfaceVisibility: "hidden",
-  backgroundColor: "#ffffff", 
+  backgroundColor: "#ffffff",
   border: "1px solid #ccc",
   borderRadius: "10px",
-  boxShadow: "none",
 });
 
 const CardFront = styled(CardFace)({
+  background:
+    "linear-gradient(120deg,#FF99FF 30%, #FF99CC 88%,#731e55 40%,#CC6699 78%)",
+  color: "#fff",
   transform: "rotateY(0deg)",
 });
 
 const CardBack = styled(CardFace)({
+  background:
+    "linear-gradient(120deg,#CC6699 30%, #ad4588 88%,#ad4588 40%, #FF99FF 78%)",
+  color: "#fff",
   transform: "rotateY(180deg)",
 });
 
@@ -68,8 +73,17 @@ const StyledButton = styled(Button)({
     backgroundColor: "#bfbfbf",
   },
 });
-
-const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) => {
+const IconCard = styled(IconButton)({
+  color: "#fff",
+  "&:hover": {
+    backgroundColor: "#7d3c3d",
+  },
+});
+const QuestionCard = ({
+  question,
+  handleUpdateQuestion,
+  handleDeleteQuestion,
+}) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -77,7 +91,7 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
   const auth = getAuth();
   const currentUser = auth.currentUser;
   const currentUserUid = currentUser ? currentUser.uid : null;
-  const role = sessionStorage.getItem('role');
+  const role = sessionStorage.getItem("role");
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -124,9 +138,17 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
     <StyledCard onClick={handleCardClick}>
       <CardInner isFlipped={isFlipped}>
         <CardFront>
-          <Typography variant="h6" component="div">
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              textTransform: "uppercase",
+              fontSize: "1.3rem",
+              textAlign: "center",
+            }}
+          >
             {question.question}
-          </Typography>          
+          </Typography>
           <Box
             display="flex"
             justifyContent="flex-end"
@@ -134,26 +156,38 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
             bottom="10px"
             right="10px"
           >
-            
-            {role === 'user' && currentUserUid === question.uid && (
+            {role === "user" && currentUserUid === question.uid && (
               <>
-                <IconButton size="small" onClick={openEditModal}>
+                <IconCard size="small">
+                  <CiHeart />
+                </IconCard>
+                <IconCard size="small" onClick={openEditModal}>
                   <EditIcon />
-                </IconButton>
-                <IconButton size="small" onClick={openDeleteDialog}>
+                </IconCard>
+                <IconCard size="small" onClick={openDeleteDialog}>
                   <DeleteIcon />
-                </IconButton>
+                </IconCard>
               </>
             )}
           </Box>
         </CardFront>
         <CardBack>
-          <Typography variant="body1" color="text.secondary">
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{
+              textTransform: "uppercase",
+              fontSize: "1.3rem",
+              textAlign: "center",
+              color: "#fff",
+            }}
+          >
+            <p>Admin: </p>
             {question.answer}
           </Typography>
         </CardBack>
       </CardInner>
-      {role === 'user' && currentUserUid === question.uid && (
+      {role === "user" && currentUserUid === question.uid && (
         <>
           <Modal
             open={isEditModalOpen}
@@ -163,12 +197,12 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
           >
             <Box
               sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
                 width: 400,
-                bgcolor: 'background.paper',
+                bgcolor: "background.paper",
                 boxShadow: 24,
                 p: 4,
                 borderRadius: 1,
@@ -188,15 +222,15 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
                 <StyledButton
                   onClick={handleEditSubmit}
                   sx={{
-                    padding: '10px 20px',
-                    color: 'white',
-                    fontSize: '12px',
-                    fontWeight: 'bold',
-                    borderRadius: '30px',
-                    background: 'linear-gradient(135deg, #d0d0ff, #f2c0d0)',
-                    '&:hover': {
-                      background: 'linear-gradient(135deg, #b0b0ff, #e0b0c0)' 
-                    }
+                    padding: "10px 20px",
+                    color: "white",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    borderRadius: "30px",
+                    background: "linear-gradient(135deg, #d0d0ff, #f2c0d0)",
+                    "&:hover": {
+                      background: "linear-gradient(135deg, #b0b0ff, #e0b0c0)",
+                    },
                   }}
                 >
                   Submit
@@ -235,15 +269,15 @@ const QuestionCard = ({ question, handleUpdateQuestion, handleDeleteQuestion }) 
                 <StyledButton
                   onClick={handleDeleteSubmit}
                   sx={{
-                    padding: '10px 20px',
-                    color: 'white', 
-                    fontSize: '12px',
-                    fontWeight: 'bold',
-                    borderRadius: '30px',
-                    background: 'linear-gradient(135deg, #d0d0ff, #f2c0d0)', 
-                    '&:hover': {
-                      background: 'linear-gradient(135deg, #b0b0ff, #e0b0c0)' 
-                    }
+                    padding: "10px 20px",
+                    color: "white",
+                    fontSize: "12px",
+                    fontWeight: "bold",
+                    borderRadius: "30px",
+                    background: "linear-gradient(135deg, #d0d0ff, #f2c0d0)",
+                    "&:hover": {
+                      background: "linear-gradient(135deg, #b0b0ff, #e0b0c0)",
+                    },
                   }}
                 >
                   Delete
