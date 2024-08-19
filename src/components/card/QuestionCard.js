@@ -18,10 +18,9 @@ const StyledCard = styled(Card)({
   height: "300px",
   margin: "20px",
   perspective: "1000px",
-  boxShadow:
-    "rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;",
+  boxShadow: 'none',
   borderRadius: "10px",
-  //background: "linear-gradient(135deg, #d0d0ff, #f2c0d0)",
+  background: "linear-gradient(135deg, #e5e5fc, #ffe3ec, #e4e4fa)",
   position: "relative",
 });
 
@@ -50,15 +49,15 @@ const CardFace = styled(CardContent)({
 
 const CardFront = styled(CardFace)({
   background:
-    "linear-gradient(120deg,#FF99FF 30%, #FF99CC 88%,#731e55 40%,#CC6699 78%)",
-  color: "#fff",
+    "linear-gradient(120deg, #F4D9D7 5%, #FF99CC 88%,#731e55 40% ,#DD6699 68%)",
+  color: "#000",
   transform: "rotateY(0deg)",
 });
 
 const CardBack = styled(CardFace)({
   background:
-    "linear-gradient(120deg,#CC6699 30%, #ad4588 88%,#ad4588 40%, #FF99FF 78%)",
-  color: "#fff",
+    "linear-gradient(120deg,#CC6699 30%, #DD6699 88%, #ad4588 40%, #FF99CC 78%)",
+  color: "#000",
   transform: "rotateY(180deg)",
 });
 
