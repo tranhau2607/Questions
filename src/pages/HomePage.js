@@ -37,7 +37,6 @@ const HomePage = () => {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, []);
-
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
   };
