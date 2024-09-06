@@ -139,7 +139,7 @@ const HomePage = () => {
               borderRadius: "30px",
               backgroundColor: "#ffffff",
               "&:hover": {
-                background: 'linear-gradient(135deg, #dadaff, #ffd8e5)',
+                background: "linear-gradient(135deg, #dadaff, #ffd8e5)",
               },
             }}
           >

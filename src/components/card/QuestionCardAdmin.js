@@ -63,6 +63,55 @@ const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
               <Typography variant="h6" gutterBottom>
                 {question.question}
               </Typography>
+              {showAnswer && (
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{
+                    overflow: "hidden",
+                    whiteSpace: "normal",
+                  }}
+                >
+                  Admin: {answer}
+                </Typography>
+              )}
+              {!showAnswer && (
+                <Box sx={{ width: "100%" }}>
+                  <TextField
+                    label="Answer"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
+                  />
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                    marginTop="5px"
+                    width="100%"
+                  >
+                    <IconButton
+                      onClick={handleUpdate}
+                      color="primary"
+                      disabled={answer.trim() === ""}
+                      sx={{ flexGrow: 1 }}
+                    >
+                      <Typography variant="body2">
+                        <CiLocationArrow1 style={{ fontSize: "1.5rem" }} />
+                      </Typography>
+                    </IconButton>
+                    <IconButton
+                      onClick={() => onDelete(question.id)}
+                      color="error"
+                      sx={{ flexGrow: 1 }}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </Box>
+                </Box>
+              )}
             </>
           )}
 
@@ -78,57 +127,6 @@ const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
               {question.answer}
             </Typography>
           )}
-
-          {role === "admin" && showAnswer && (
-            <Typography
-              variant="body1"
-              color="text.secondary"
-              sx={{
-                overflow: "hidden",
-                whiteSpace: "normal",
-              }}
-            >
-              Admin: {answer}
-            </Typography>
-          )}
-
-          {role === "admin" && !showAnswer && (
-            <Box sx={{ width: "100%" }}>
-              <TextField
-                label="Answer"
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-              />
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                marginTop="5px"
-                width="100%" 
-              >
-                <IconButton
-                  onClick={handleUpdate}
-                  color="primary"
-                  disabled={answer.trim() === ""}
-                  sx={{ flexGrow: 1 }} 
-                >
-                  <Typography variant="body2">
-                    <CiLocationArrow1 style={{ fontSize: "1.5rem" }} />
-                  </Typography>
-                </IconButton>
-                <IconButton
-                  onClick={() => onDelete(question.id)}
-                  color="error"
-                  sx={{ flexGrow: 1 }} 
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </Box>
-            </Box>
-          )}
         </CardFront>
       </CardActionArea>
     </StyledCard>
@@ -136,4 +134,3 @@ const QuestionCardAdmin = ({ question, onUpdate, onDelete }) => {
 };
 
 export default QuestionCardAdmin;
-  
